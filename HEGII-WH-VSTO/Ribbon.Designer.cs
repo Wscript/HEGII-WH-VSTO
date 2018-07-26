@@ -38,12 +38,15 @@
             this.group1 = this.Factory.CreateRibbonGroup();
             this.tab2 = this.Factory.CreateRibbonTab();
             this.group2 = this.Factory.CreateRibbonGroup();
-            this.buttonGroup1 = this.Factory.CreateRibbonButtonGroup();
-            this.ButtonInstallOrderArrange = this.Factory.CreateRibbonButton();
+            this.group3 = this.Factory.CreateRibbonGroup();
+            this.ButtonServeicOrderArrange = this.Factory.CreateRibbonButton();
+            this.button1 = this.Factory.CreateRibbonButton();
+            this.buttonAddressCrawler = this.Factory.CreateRibbonButton();
+            this.button3 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.tab2.SuspendLayout();
             this.group2.SuspendLayout();
-            this.buttonGroup1.SuspendLayout();
+            this.group3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -61,24 +64,57 @@
             // tab2
             // 
             this.tab2.Groups.Add(this.group2);
+            this.tab2.Groups.Add(this.group3);
             this.tab2.Label = "恒洁客服";
             this.tab2.Name = "tab2";
             // 
             // group2
             // 
-            this.group2.Items.Add(this.buttonGroup1);
+            this.group2.Items.Add(this.ButtonServeicOrderArrange);
+            this.group2.Items.Add(this.button1);
             this.group2.Name = "group2";
             // 
-            // buttonGroup1
+            // group3
             // 
-            this.buttonGroup1.Items.Add(this.ButtonInstallOrderArrange);
-            this.buttonGroup1.Name = "buttonGroup1";
+            this.group3.Items.Add(this.buttonAddressCrawler);
+            this.group3.Items.Add(this.button3);
+            this.group3.Label = "group3";
+            this.group3.Name = "group3";
             // 
-            // ButtonInstallOrderArrange
+            // ButtonServeicOrderArrange
             // 
-            this.ButtonInstallOrderArrange.Label = "安装单整理";
-            this.ButtonInstallOrderArrange.Name = "ButtonInstallOrderArrange";
-            this.ButtonInstallOrderArrange.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonInstallOrderArrange_Click);
+            this.ButtonServeicOrderArrange.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.ButtonServeicOrderArrange.Label = "服务单整理";
+            this.ButtonServeicOrderArrange.Name = "ButtonServeicOrderArrange";
+            this.ButtonServeicOrderArrange.OfficeImageId = "FileSave";
+            this.ButtonServeicOrderArrange.ShowImage = true;
+            this.ButtonServeicOrderArrange.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonServiceOrderArrange_Click);
+            // 
+            // button1
+            // 
+            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button1.Label = "服务单整理";
+            this.button1.Name = "button1";
+            this.button1.OfficeImageId = "HighImportance";
+            this.button1.ShowImage = true;
+            // 
+            // buttonAddressCrawler
+            // 
+            this.buttonAddressCrawler.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.buttonAddressCrawler.Image = global::HEGII_WH_VSTO.Properties.Resources.icons8_老蜘蛛侠_80;
+            this.buttonAddressCrawler.Label = "地址爬虫";
+            this.buttonAddressCrawler.Name = "buttonAddressCrawler";
+            this.buttonAddressCrawler.OfficeImageId = "HighImportance";
+            this.buttonAddressCrawler.ShowImage = true;
+            this.buttonAddressCrawler.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonAddressCrawler_Click);
+            // 
+            // button3
+            // 
+            this.button3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button3.Label = "服务单整理";
+            this.button3.Name = "button3";
+            this.button3.OfficeImageId = "HighImportance";
+            this.button3.ShowImage = true;
             // 
             // Ribbon
             // 
@@ -93,8 +129,8 @@
             this.tab2.PerformLayout();
             this.group2.ResumeLayout(false);
             this.group2.PerformLayout();
-            this.buttonGroup1.ResumeLayout(false);
-            this.buttonGroup1.PerformLayout();
+            this.group3.ResumeLayout(false);
+            this.group3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -105,8 +141,11 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         private Microsoft.Office.Tools.Ribbon.RibbonTab tab2;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButtonGroup buttonGroup1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton ButtonInstallOrderArrange;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton ButtonServeicOrderArrange;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonAddressCrawler;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
     }
 
     partial class ThisRibbonCollection
