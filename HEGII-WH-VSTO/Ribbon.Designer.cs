@@ -35,12 +35,11 @@
         private void InitializeComponent()
         {
             this.tab1 = this.Factory.CreateRibbonTab();
-            this.group1 = this.Factory.CreateRibbonGroup();
             this.tab2 = this.Factory.CreateRibbonTab();
             this.group2 = this.Factory.CreateRibbonGroup();
-            this.group3 = this.Factory.CreateRibbonGroup();
             this.ButtonServeicOrderArrange = this.Factory.CreateRibbonButton();
             this.button1 = this.Factory.CreateRibbonButton();
+            this.group3 = this.Factory.CreateRibbonGroup();
             this.buttonAddressCrawler = this.Factory.CreateRibbonButton();
             this.button3 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
@@ -52,14 +51,8 @@
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
-            this.tab1.Groups.Add(this.group1);
             this.tab1.Label = "TabAddIns";
             this.tab1.Name = "tab1";
-            // 
-            // group1
-            // 
-            this.group1.Label = "group1";
-            this.group1.Name = "group1";
             // 
             // tab2
             // 
@@ -73,13 +66,6 @@
             this.group2.Items.Add(this.ButtonServeicOrderArrange);
             this.group2.Items.Add(this.button1);
             this.group2.Name = "group2";
-            // 
-            // group3
-            // 
-            this.group3.Items.Add(this.buttonAddressCrawler);
-            this.group3.Items.Add(this.button3);
-            this.group3.Label = "group3";
-            this.group3.Name = "group3";
             // 
             // ButtonServeicOrderArrange
             // 
@@ -97,6 +83,13 @@
             this.button1.Name = "button1";
             this.button1.OfficeImageId = "HighImportance";
             this.button1.ShowImage = true;
+            // 
+            // group3
+            // 
+            this.group3.Items.Add(this.buttonAddressCrawler);
+            this.group3.Items.Add(this.button3);
+            this.group3.Label = "group3";
+            this.group3.Name = "group3";
             // 
             // buttonAddressCrawler
             // 
@@ -138,7 +131,6 @@
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         private Microsoft.Office.Tools.Ribbon.RibbonTab tab2;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton ButtonServeicOrderArrange;

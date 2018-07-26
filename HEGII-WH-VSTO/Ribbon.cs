@@ -165,6 +165,7 @@ namespace HEGII_WH_VSTO
             string html = DownloadString("https://wh.lianjia.com/xiaoqu/");
             MessageBox.Show(html.Length.ToString());
         }
+
         public static string DownloadString(string address)
         {
             WebClient client = new WebClient();
