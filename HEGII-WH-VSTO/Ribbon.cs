@@ -4,6 +4,8 @@ using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using HtmlAgilityPack;
+using System.Diagnostics;
 
 namespace HEGII_WH_VSTO
 {
@@ -86,7 +88,7 @@ namespace HEGII_WH_VSTO
             int i = 7, j = 2;
             while (ActiveSheet.Cells[i,1] != null)
             {
-
+                j = j + 3;
             }
 
         }
@@ -163,7 +165,19 @@ namespace HEGII_WH_VSTO
         private void buttonAddressCrawler_Click(object sender, RibbonControlEventArgs e)
         {
             string html = DownloadString("https://wh.lianjia.com/xiaoqu/");
-            MessageBox.Show(html.Length.ToString());
+            Debug.WriteLine("取得HTML代码 {0} 字符。",html.Length);
+            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(html);
+            HtmlNode documentNode = doc.DocumentNode;
+            HtmlNode aname = documentNode.SelectSingleNode("//a[@title=\"武汉江岸小区二手房 \"]");
+            HtmlNodeCollection bname = documentNode.SelectNodes("//a[contains(@title,'小区二手房')]");
+            foreach (HtmlNode item in bname)
+            {
+                foreach (var attr in item.Attributes)
+                {
+                    Debug.WriteLine(attr.Name + " : " + attr.Value);
+                }
+            }
         }
 
         public static string DownloadString(string address)
