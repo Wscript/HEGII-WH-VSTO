@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using HtmlAgilityPack;
 using System.Diagnostics;
+using System;
 
 namespace HEGII_WH_VSTO
 {
@@ -165,6 +166,7 @@ namespace HEGII_WH_VSTO
         private void buttonAddressCrawler_Click(object sender, RibbonControlEventArgs e)
         {
             string htmlDistrictPage;
+            int intWriteRow = 1;
             string stringWebsiteAddress = "https://wh.lianjia.com";       //设置网站地址,结尾不要用"/"
             string htmlStartPage = getHtmlString(stringWebsiteAddress + "/xiaoqu/","小区");         //取起始页面的HTML代码
             if (htmlStartPage != "error")
@@ -194,7 +196,7 @@ namespace HEGII_WH_VSTO
                                 }
                                 if (htmlDistrictPage != "error")
                                 {
-                                    getCommunityInfo(htmlDistrictPage);     //处理小区列表信息
+                                    intWriteRow = getCommunityInfo(htmlDistrictPage, intWriteRow);     //处理小区列表信息
                                 }
                             }
                         }
@@ -224,7 +226,7 @@ namespace HEGII_WH_VSTO
             }
             catch (System.Exception ex)         //没有取到网页则报错
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 return ("error");
             }
         }
@@ -237,36 +239,50 @@ namespace HEGII_WH_VSTO
             return (HtmlNodePage);
         }
 
-        public static void getCommunityInfo(string htmlDistrictPage)        //读取小区的信息
+        public static int getCommunityInfo(string htmlDistrictPage,int intWriteRow)        //读取小区的信息
         {
+            Worksheet ActiveSheet = Globals.ThisAddIn.Application.ActiveSheet;
+
+            ActiveSheet.Cells[1, 1] = "小区名称";
+            ActiveSheet.Cells[1, 2] = "所属行政区";
+            ActiveSheet.Cells[1, 3] = "所属街道";
+            ActiveSheet.Cells[1, 4] = "小区地址";
+            ActiveSheet.Cells[1, 5] = "建筑年代";
+            ActiveSheet.Cells[1, 6] = "建筑类型";
+            ActiveSheet.Cells[1, 7] = "物业公司";
+            ActiveSheet.Cells[1, 8] = "开发商";
+            ActiveSheet.Cells[1, 9] = "楼栋总数";
+            ActiveSheet.Cells[1, 10] = "房屋总数";
+
             HtmlNode HtmlNodeCommunityList = getHtmlNode(htmlDistrictPage);
             HtmlNodeCollection HtmlNodeCollectionCommunity = HtmlNodeCommunityList.SelectNodes("//li[@class=\"clear xiaoquListItem\"]");
             foreach (HtmlNode HtmlNodeCommunity in HtmlNodeCollectionCommunity)
             {
+                intWriteRow = intWriteRow + 1;
+                ActiveSheet.Rows[intWriteRow].Select();
                 string htmlCommunityItem = HtmlNodeCommunity.InnerHtml;
                 HtmlNode HtmlNodeCommunityItem = getHtmlNode(htmlCommunityItem);
                 HtmlNode HtmlNodeCommunityName = HtmlNodeCommunityItem.SelectSingleNode("//div[@class=\"title\"]");
-                Debug.WriteLine(HtmlNodeCommunityName.ChildNodes[1].InnerText);
+                ActiveSheet.Cells[intWriteRow, 1] = HtmlNodeCommunityName.ChildNodes[1].InnerText;
                 HtmlNode HtmlNodeCommunityPosition = HtmlNodeCommunityItem.SelectSingleNode("//div[@class=\"positionInfo\"]");
-                Debug.WriteLine(HtmlNodeCommunityPosition.ChildNodes[3].InnerText);
-                Debug.WriteLine(HtmlNodeCommunityPosition.ChildNodes[5].InnerText);
+                ActiveSheet.Cells[intWriteRow, 2] = HtmlNodeCommunityPosition.ChildNodes[3].InnerText;
+                ActiveSheet.Cells[intWriteRow, 3] = HtmlNodeCommunityPosition.ChildNodes[5].InnerText;
                 string htmlCommunityPage = getHtmlString(HtmlNodeCommunityName.ChildNodes[1].Attributes["href"].Value, HtmlNodeCommunityName.ChildNodes[1].InnerText);
                 if (htmlCommunityPage != "error")
                 {
                     HtmlNode HtmlNodeCommunityPage = getHtmlNode(htmlCommunityPage);
                     HtmlNode HtmlNodeCommunityAddress = HtmlNodeCommunityPage.SelectSingleNode("//div[@class=\"detailDesc\"]");
-                    Debug.WriteLine(HtmlNodeCommunityAddress.InnerText.Substring(HtmlNodeCommunityAddress.InnerText.IndexOf(")") + 1));
+                    ActiveSheet.Cells[intWriteRow, 4] = HtmlNodeCommunityAddress.InnerText.Substring(HtmlNodeCommunityAddress.InnerText.IndexOf(")") + 1);
                     HtmlNode HtmlNodeCommunityInfo = HtmlNodeCommunityPage.SelectSingleNode("//div[@class=\"xiaoquInfo\"]");
-                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[0].ChildNodes[1].InnerText);
-                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[1].ChildNodes[1].InnerText);
-                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[3].ChildNodes[1].InnerText);
-                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[4].ChildNodes[1].InnerText);
-                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[5].ChildNodes[1].InnerText);
-                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[6].ChildNodes[1].InnerText);
-                    Debug.WriteLine("");
+                    ActiveSheet.Cells[intWriteRow, 5] = HtmlNodeCommunityInfo.ChildNodes[0].ChildNodes[1].InnerText;
+                    ActiveSheet.Cells[intWriteRow, 6] = HtmlNodeCommunityInfo.ChildNodes[1].ChildNodes[1].InnerText;
+                    ActiveSheet.Cells[intWriteRow, 7] = HtmlNodeCommunityInfo.ChildNodes[3].ChildNodes[1].InnerText;
+                    ActiveSheet.Cells[intWriteRow, 8] = HtmlNodeCommunityInfo.ChildNodes[4].ChildNodes[1].InnerText;
+                    ActiveSheet.Cells[intWriteRow, 9] = HtmlNodeCommunityInfo.ChildNodes[5].ChildNodes[1].InnerText;
+                    ActiveSheet.Cells[intWriteRow, 10] = HtmlNodeCommunityInfo.ChildNodes[6].ChildNodes[1].InnerText;
                 }
             }
-
+            return (intWriteRow);
         }
     }
 }
