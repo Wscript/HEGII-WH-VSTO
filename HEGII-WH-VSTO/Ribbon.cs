@@ -166,37 +166,67 @@ namespace HEGII_WH_VSTO
         {
             string htmlDistrictPage;
             string stringWebsiteAddress = "https://wh.lianjia.com";       //设置网站地址,结尾不要用"/"
-            string htmlStartPage = getHtmlString(stringWebsiteAddress + "/xiaoqu/");         //取起始页面的HTML代码
-            HtmlNode HtmlNodeStartPage = getHtmlNode(htmlStartPage);
-            HtmlNodeCollection HtmlNodeCollectionDistrict = HtmlNodeStartPage.SelectNodes("//a[contains(@title,'小区二手房')]");      //找到行政区页面链接
-            foreach (HtmlNode HtmlNodeDistrict in HtmlNodeCollectionDistrict)       //遍历所有行政区
+            string htmlStartPage = getHtmlString(stringWebsiteAddress + "/xiaoqu/","小区");         //取起始页面的HTML代码
+            if (htmlStartPage != "error")
             {
-                htmlDistrictPage = "";
-                if (HtmlNodeDistrict.Attributes["href"].Value != "/xiaoqu/")        //跳过起始页面
+                HtmlNode HtmlNodeStartPage = getHtmlNode(htmlStartPage);
+                HtmlNodeCollection HtmlNodeCollectionDistrict = HtmlNodeStartPage.SelectNodes("//a[contains(@title,'小区二手房')]");      //找到行政区页面链接
+                foreach (HtmlNode HtmlNodeDistrict in HtmlNodeCollectionDistrict)       //遍历所有行政区
                 {
-                    htmlDistrictPage = getHtmlString(stringWebsiteAddress + HtmlNodeDistrict.Attributes["href"].Value);      //取各行政区页面的HTML代码
-                    HtmlNode HtmlNodeDistrictPage = getHtmlNode(htmlDistrictPage);
-                    HtmlNode HtmlNodePageCount = HtmlNodeDistrictPage.SelectSingleNode("//div[@class=\"page-box house-lst-page-box\"]");
-                    int intCommunityPageCount = int.Parse(HtmlNodePageCount.Attributes["page-data"].Value.Substring(13, HtmlNodePageCount.Attributes["page-data"].Value.IndexOf(",") - 13));
-                    //取小区列表的总页数
-                    for (int i = 1; i < intCommunityPageCount; i++)
+                    htmlDistrictPage = "";
+                    if (HtmlNodeDistrict.Attributes["href"].Value != "/xiaoqu/")        //跳过起始页面
                     {
-                        if (i > 1)      //跳过当前页
+                        htmlDistrictPage = getHtmlString(stringWebsiteAddress + HtmlNodeDistrict.Attributes["href"].Value, HtmlNodeDistrict.InnerText);
+                        //取各行政区页面的HTML代码
+                        if (htmlDistrictPage != "error")
                         {
-                            htmlDistrictPage = getHtmlString(stringWebsiteAddress + HtmlNodePageCount.Attributes["page-url"].Value.Replace("{page}", i.ToString()));
+                            HtmlNode HtmlNodeDistrictPage = getHtmlNode(htmlDistrictPage);
+                            HtmlNode HtmlNodePageCount = HtmlNodeDistrictPage.SelectSingleNode("//div[@class=\"page-box house-lst-page-box\"]");
+                            int intCommunityPageCount = int.Parse(HtmlNodePageCount.Attributes["page-data"].Value.Substring(13, HtmlNodePageCount.Attributes["page-data"].Value.IndexOf(",") - 13));
+                            //取小区列表的总页数
+                            for (int i = 1; i < intCommunityPageCount; i++)
+                            {
+                                if (i > 1)      //跳过小区列表第一页
+                                {
+                                    htmlDistrictPage = getHtmlString(stringWebsiteAddress + HtmlNodePageCount.Attributes["page-url"].Value.Replace("{page}", i.ToString()),
+                                                                     HtmlNodeDistrict.InnerText);
+                                    //取小区列表下一页
+                                }
+                                if (htmlDistrictPage != "error")
+                                {
+                                    getCommunityInfo(htmlDistrictPage);     //处理小区列表信息
+                                }
+                            }
                         }
-                        getCommunityInfo(htmlDistrictPage);     //处理小区信息
                     }
                 }
             }
         }
 
-        public static string getHtmlString(string address)     //取指定地址页面的HTML代码
+        public static string getHtmlString(string stringaddress,string stringKeyWord)     //取指定地址页面的HTML代码
         {
+
+            string HtmlString;
             WebClient client = new WebClient();
             client.Encoding = System.Text.Encoding.GetEncoding("UTF-8");
-            string HtmlString = client.DownloadString(address);
-            return (HtmlString);
+            try
+            {
+                HtmlString = client.DownloadString(stringaddress);
+                HtmlNode HtmlNodeHtmlTitle = getHtmlNode(HtmlString).SelectSingleNode("//title[1]");        //对比关键字，看取到的网页是否正确
+                if (HtmlNodeHtmlTitle.InnerText.IndexOf(stringKeyWord) >= 0)
+                {
+                    return (HtmlString);
+                }
+                else
+                {
+                    return ("error");
+                }
+            }
+            catch (System.Exception ex)         //没有取到网页则报错
+            {
+                MessageBox.Show(ex.Message);
+                return ("error");
+            }
         }
 
         public static HtmlNode getHtmlNode(string htmlPage)     //用HtmlAgilityPack处理HTML代码
@@ -220,16 +250,21 @@ namespace HEGII_WH_VSTO
                 HtmlNode HtmlNodeCommunityPosition = HtmlNodeCommunityItem.SelectSingleNode("//div[@class=\"positionInfo\"]");
                 Debug.WriteLine(HtmlNodeCommunityPosition.ChildNodes[3].InnerText);
                 Debug.WriteLine(HtmlNodeCommunityPosition.ChildNodes[5].InnerText);
-                string htmlCommunityPage = getHtmlString(HtmlNodeCommunityName.ChildNodes[1].Attributes["href"].Value);
-                HtmlNode HtmlNodeCommunityPage = getHtmlNode(htmlCommunityPage);
-                HtmlNode HtmlNodeCommunityAddress = HtmlNodeCommunityPage.SelectSingleNode("//div[@class=\"detailDesc\"]");
-                Debug.WriteLine(HtmlNodeCommunityAddress.InnerText.Substring(HtmlNodeCommunityAddress.InnerText.IndexOf(")")+1));
-                HtmlNode HtmlNodeCommunityInfo = HtmlNodeCommunityPage.SelectSingleNode("//div[@class=\"xiaoquInfo\"]");
-                Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[0].ChildNodes[1].InnerText);
-                Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[1].ChildNodes[1].InnerText);
-                Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[5].ChildNodes[1].InnerText);
-                Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[6].ChildNodes[1].InnerText);
-                Debug.WriteLine("");
+                string htmlCommunityPage = getHtmlString(HtmlNodeCommunityName.ChildNodes[1].Attributes["href"].Value, HtmlNodeCommunityName.ChildNodes[1].InnerText);
+                if (htmlCommunityPage != "error")
+                {
+                    HtmlNode HtmlNodeCommunityPage = getHtmlNode(htmlCommunityPage);
+                    HtmlNode HtmlNodeCommunityAddress = HtmlNodeCommunityPage.SelectSingleNode("//div[@class=\"detailDesc\"]");
+                    Debug.WriteLine(HtmlNodeCommunityAddress.InnerText.Substring(HtmlNodeCommunityAddress.InnerText.IndexOf(")") + 1));
+                    HtmlNode HtmlNodeCommunityInfo = HtmlNodeCommunityPage.SelectSingleNode("//div[@class=\"xiaoquInfo\"]");
+                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[0].ChildNodes[1].InnerText);
+                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[1].ChildNodes[1].InnerText);
+                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[3].ChildNodes[1].InnerText);
+                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[4].ChildNodes[1].InnerText);
+                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[5].ChildNodes[1].InnerText);
+                    Debug.WriteLine(HtmlNodeCommunityInfo.ChildNodes[6].ChildNodes[1].InnerText);
+                    Debug.WriteLine("");
+                }
             }
 
         }
