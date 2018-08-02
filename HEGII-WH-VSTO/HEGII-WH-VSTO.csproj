@@ -243,7 +243,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>37780865D590E8B6200B753F8EF0D017926931EC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>AB1E56A62FCCCDA27D11EF40C3EAB0A1B73F7E26</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
