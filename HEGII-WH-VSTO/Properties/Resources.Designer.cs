@@ -63,9 +63,29 @@ namespace HEGII_WH_VSTO.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_升序排序_80 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-升序排序-80", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_老蜘蛛侠_80 {
             get {
                 object obj = ResourceManager.GetObject("icons8-老蜘蛛侠-80", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_进口_80 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-进口-80", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

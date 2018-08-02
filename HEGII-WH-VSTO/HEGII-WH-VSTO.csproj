@@ -122,6 +122,7 @@
       <HintPath>..\packages\HtmlAgilityPack.1.8.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -177,15 +178,24 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="ctpUserLogin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctpUserLogin.Designer.cs">
+      <DependentUpon>ctpUserLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserControlAddressCrawler.cs">
+    <Compile Include="ctpAddressCrawler.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlAddressCrawler.Designer.cs">
-      <DependentUpon>UserControlAddressCrawler.cs</DependentUpon>
+    <Compile Include="ctpAddressCrawler.Designer.cs">
+      <DependentUpon>ctpAddressCrawler.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ctpUserLogin.resx">
+      <DependentUpon>ctpUserLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -199,9 +209,10 @@
     <EmbeddedResource Include="Ribbon.resx">
       <DependentUpon>Ribbon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlAddressCrawler.resx">
-      <DependentUpon>UserControlAddressCrawler.cs</DependentUpon>
+    <EmbeddedResource Include="ctpAddressCrawler.resx">
+      <DependentUpon>ctpAddressCrawler.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -231,6 +242,12 @@
   <ItemGroup>
     <None Include="Resources\icons8-老蜘蛛侠-80.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-进口-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-升序排序-80.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -243,7 +260,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>AB1E56A62FCCCDA27D11EF40C3EAB0A1B73F7E26</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>37780865D590E8B6200B753F8EF0D017926931EC</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
