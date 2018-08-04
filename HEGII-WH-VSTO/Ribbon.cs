@@ -164,22 +164,17 @@ namespace HEGII_WH_VSTO
 
         private void buttonAddressCrawler_Click(object sender, RibbonControlEventArgs e)
         {
-            if (ctpAddressCrawler == null)
+            if (Globals.Ribbons.Ribbon.labelUserName.Label == "<未登录>")
             {
-                ctpAddressCrawler = Globals.ThisAddIn.CustomTaskPanes.Add(new ctpAddressCrawler(), "起始地址");
-                ctpAddressCrawler.Visible = true;
+                MessageBox.Show("未登录！");
             }
             else
             {
-                if (ctpAddressCrawler.Visible)
+                if (ctpAddressCrawler == null)
                 {
-                    ctpAddressCrawler.Visible = false;
-                    ctpAddressCrawler = null;
+                    ctpAddressCrawler = Globals.ThisAddIn.CustomTaskPanes.Add(new ctpAddressCrawler(), "起始地址");
                 }
-                else
-                {
-                    ctpAddressCrawler.Visible = true;
-                }
+                CustomTaskPaneVisible(ctpAddressCrawler);
             }
         }
 
@@ -190,25 +185,26 @@ namespace HEGII_WH_VSTO
                 if (ctpUserLogin == null)
                 {
                     ctpUserLogin = Globals.ThisAddIn.CustomTaskPanes.Add(new ctpUserLogin(), "用户登录");
-                    ctpUserLogin.Visible = true;
                 }
-                else
-                {
-                    if (ctpUserLogin.Visible)
-                    {
-                        ctpUserLogin.Visible = false;
-                        ctpUserLogin = null;
-                    }
-                    else
-                    {
-                        ctpUserLogin.Visible = true;
-                    }
-                }
+                CustomTaskPaneVisible(ctpUserLogin);
             }
             else
             {
                 Globals.Ribbons.Ribbon.buttonUserLogin.Label = "用户登录";
                 Globals.Ribbons.Ribbon.labelUserName.Label = "<未登录>";
+            }
+        }
+
+        private void CustomTaskPaneVisible (Microsoft.Office.Tools.CustomTaskPane CustomTaskPane)
+        {
+            if (CustomTaskPane.Visible == true)
+            {
+                CustomTaskPane.Visible = false;
+                CustomTaskPane = null;
+            }
+            else
+            {
+                CustomTaskPane.Visible = true;
             }
         }
     }
