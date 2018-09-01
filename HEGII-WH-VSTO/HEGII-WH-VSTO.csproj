@@ -240,13 +240,13 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-老蜘蛛侠-80.png" />
+    <None Include="Resources\sort.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-进口-80.png" />
+    <None Include="Resources\map-marker-multiple.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-升序排序-80.png" />
+    <None Include="Resources\login.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

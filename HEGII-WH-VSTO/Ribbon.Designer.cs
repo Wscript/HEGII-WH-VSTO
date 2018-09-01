@@ -41,8 +41,8 @@
             this.box1 = this.Factory.CreateRibbonBox();
             this.labelUser = this.Factory.CreateRibbonLabel();
             this.labelUserName = this.Factory.CreateRibbonLabel();
-            this.buttonUserLogin = this.Factory.CreateRibbonButton();
             this.group3 = this.Factory.CreateRibbonGroup();
+            this.buttonUserLogin = this.Factory.CreateRibbonButton();
             this.buttonAddressCrawler = this.Factory.CreateRibbonButton();
             this.ButtonServeicOrderArrange = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
@@ -94,25 +94,26 @@
             this.labelUserName.Label = "<未登录>";
             this.labelUserName.Name = "labelUserName";
             // 
-            // buttonUserLogin
-            // 
-            this.buttonUserLogin.Image = global::HEGII_WH_VSTO.Properties.Resources.icons8_进口_80;
-            this.buttonUserLogin.Label = "用户登录";
-            this.buttonUserLogin.Name = "buttonUserLogin";
-            this.buttonUserLogin.OfficeImageId = "HighImportance";
-            this.buttonUserLogin.ShowImage = true;
-            this.buttonUserLogin.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonUserLogin_Click);
-            // 
             // group3
             // 
             this.group3.Items.Add(this.buttonAddressCrawler);
             this.group3.Items.Add(this.ButtonServeicOrderArrange);
             this.group3.Name = "group3";
             // 
+            // buttonUserLogin
+            // 
+            this.buttonUserLogin.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.buttonUserLogin.Image = global::HEGII_WH_VSTO.Properties.Resources.login;
+            this.buttonUserLogin.Label = "用户登录";
+            this.buttonUserLogin.Name = "buttonUserLogin";
+            this.buttonUserLogin.OfficeImageId = "HighImportance";
+            this.buttonUserLogin.ShowImage = true;
+            this.buttonUserLogin.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonUserLogin_Click);
+            // 
             // buttonAddressCrawler
             // 
             this.buttonAddressCrawler.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.buttonAddressCrawler.Image = global::HEGII_WH_VSTO.Properties.Resources.icons8_老蜘蛛侠_80;
+            this.buttonAddressCrawler.Image = global::HEGII_WH_VSTO.Properties.Resources.map_marker_multiple;
             this.buttonAddressCrawler.Label = "地址爬虫";
             this.buttonAddressCrawler.Name = "buttonAddressCrawler";
             this.buttonAddressCrawler.OfficeImageId = "HighImportance";
@@ -122,7 +123,7 @@
             // ButtonServeicOrderArrange
             // 
             this.ButtonServeicOrderArrange.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.ButtonServeicOrderArrange.Image = global::HEGII_WH_VSTO.Properties.Resources.icons8_升序排序_80;
+            this.ButtonServeicOrderArrange.Image = global::HEGII_WH_VSTO.Properties.Resources.sort;
             this.ButtonServeicOrderArrange.Label = "服务单整理";
             this.ButtonServeicOrderArrange.Name = "ButtonServeicOrderArrange";
             this.ButtonServeicOrderArrange.OfficeImageId = "FileSave";

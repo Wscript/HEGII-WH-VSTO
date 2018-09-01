@@ -47,7 +47,7 @@ namespace HEGII_WH_VSTO.Properties {
         }
         
         /// <summary>
-        ///   使用此强类型资源类，为所有资源查找
+        ///   重写当前线程的 CurrentUICulture 属性
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -63,9 +63,9 @@ namespace HEGII_WH_VSTO.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_升序排序_80 {
+        internal static System.Drawing.Bitmap login {
             get {
-                object obj = ResourceManager.GetObject("icons8-升序排序-80", resourceCulture);
+                object obj = ResourceManager.GetObject("login", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace HEGII_WH_VSTO.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_老蜘蛛侠_80 {
+        internal static System.Drawing.Bitmap map_marker_multiple {
             get {
-                object obj = ResourceManager.GetObject("icons8-老蜘蛛侠-80", resourceCulture);
+                object obj = ResourceManager.GetObject("map-marker-multiple", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,39 @@ namespace HEGII_WH_VSTO.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_进口_80 {
+        internal static System.Drawing.Bitmap sort {
             get {
-                object obj = ResourceManager.GetObject("icons8-进口-80", resourceCulture);
+                object obj = ResourceManager.GetObject("sort", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 整理 {
+            get {
+                object obj = ResourceManager.GetObject("整理", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 爬虫 {
+            get {
+                object obj = ResourceManager.GetObject("爬虫", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 登录 {
+            get {
+                object obj = ResourceManager.GetObject("登录", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
