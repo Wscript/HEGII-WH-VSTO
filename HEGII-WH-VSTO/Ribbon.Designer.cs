@@ -37,18 +37,16 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.tab2 = this.Factory.CreateRibbonTab();
             this.groupUserInfo = this.Factory.CreateRibbonGroup();
-            this.labelComputerName = this.Factory.CreateRibbonLabel();
-            this.box1 = this.Factory.CreateRibbonBox();
             this.labelUser = this.Factory.CreateRibbonLabel();
             this.labelUserName = this.Factory.CreateRibbonLabel();
             this.group3 = this.Factory.CreateRibbonGroup();
             this.buttonUserLogin = this.Factory.CreateRibbonButton();
             this.buttonAddressCrawler = this.Factory.CreateRibbonButton();
-            this.ButtonServeicOrderArrange = this.Factory.CreateRibbonButton();
+            this.ButtonOrderArrange = this.Factory.CreateRibbonButton();
+            this.buttonOrderImport = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.tab2.SuspendLayout();
             this.groupUserInfo.SuspendLayout();
-            this.box1.SuspendLayout();
             this.group3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,26 +65,15 @@
             // 
             // groupUserInfo
             // 
-            this.groupUserInfo.Items.Add(this.labelComputerName);
-            this.groupUserInfo.Items.Add(this.box1);
             this.groupUserInfo.Items.Add(this.buttonUserLogin);
+            this.groupUserInfo.Items.Add(this.labelUser);
+            this.groupUserInfo.Items.Add(this.labelUserName);
             this.groupUserInfo.Label = "用户信息";
             this.groupUserInfo.Name = "groupUserInfo";
             // 
-            // labelComputerName
-            // 
-            this.labelComputerName.Label = "labelComputerName";
-            this.labelComputerName.Name = "labelComputerName";
-            // 
-            // box1
-            // 
-            this.box1.Items.Add(this.labelUser);
-            this.box1.Items.Add(this.labelUserName);
-            this.box1.Name = "box1";
-            // 
             // labelUser
             // 
-            this.labelUser.Label = "用户名：";
+            this.labelUser.Label = "用户名";
             this.labelUser.Name = "labelUser";
             // 
             // labelUserName
@@ -97,7 +84,8 @@
             // group3
             // 
             this.group3.Items.Add(this.buttonAddressCrawler);
-            this.group3.Items.Add(this.ButtonServeicOrderArrange);
+            this.group3.Items.Add(this.ButtonOrderArrange);
+            this.group3.Items.Add(this.buttonOrderImport);
             this.group3.Name = "group3";
             // 
             // buttonUserLogin
@@ -113,22 +101,31 @@
             // buttonAddressCrawler
             // 
             this.buttonAddressCrawler.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.buttonAddressCrawler.Image = global::HEGII_WH_VSTO.Properties.Resources.map_marker_multiple;
+            this.buttonAddressCrawler.Image = global::HEGII_WH_VSTO.Properties.Resources.MapMarker;
             this.buttonAddressCrawler.Label = "地址爬虫";
             this.buttonAddressCrawler.Name = "buttonAddressCrawler";
             this.buttonAddressCrawler.OfficeImageId = "HighImportance";
             this.buttonAddressCrawler.ShowImage = true;
             this.buttonAddressCrawler.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonAddressCrawler_Click);
             // 
-            // ButtonServeicOrderArrange
+            // ButtonOrderArrange
             // 
-            this.ButtonServeicOrderArrange.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.ButtonServeicOrderArrange.Image = global::HEGII_WH_VSTO.Properties.Resources.sort;
-            this.ButtonServeicOrderArrange.Label = "服务单整理";
-            this.ButtonServeicOrderArrange.Name = "ButtonServeicOrderArrange";
-            this.ButtonServeicOrderArrange.OfficeImageId = "FileSave";
-            this.ButtonServeicOrderArrange.ShowImage = true;
-            this.ButtonServeicOrderArrange.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonServiceOrderArrange_Click);
+            this.ButtonOrderArrange.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.ButtonOrderArrange.Image = global::HEGII_WH_VSTO.Properties.Resources.sort;
+            this.ButtonOrderArrange.Label = "服务单整理";
+            this.ButtonOrderArrange.Name = "ButtonOrderArrange";
+            this.ButtonOrderArrange.OfficeImageId = "FileSave";
+            this.ButtonOrderArrange.ShowImage = true;
+            this.ButtonOrderArrange.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonOrderArrange_Click);
+            // 
+            // buttonOrderImport
+            // 
+            this.buttonOrderImport.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.buttonOrderImport.Image = global::HEGII_WH_VSTO.Properties.Resources.database_plus;
+            this.buttonOrderImport.Label = "服务单导入";
+            this.buttonOrderImport.Name = "buttonOrderImport";
+            this.buttonOrderImport.ShowImage = true;
+            this.buttonOrderImport.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.buttonOrderImport_Click);
             // 
             // Ribbon
             // 
@@ -143,8 +140,6 @@
             this.tab2.PerformLayout();
             this.groupUserInfo.ResumeLayout(false);
             this.groupUserInfo.PerformLayout();
-            this.box1.ResumeLayout(false);
-            this.box1.PerformLayout();
             this.group3.ResumeLayout(false);
             this.group3.PerformLayout();
             this.ResumeLayout(false);
@@ -155,15 +150,14 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         private Microsoft.Office.Tools.Ribbon.RibbonTab tab2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton ButtonServeicOrderArrange;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton ButtonOrderArrange;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group3;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonUserLogin;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonAddressCrawler;
-        internal Microsoft.Office.Tools.Ribbon.RibbonLabel labelComputerName;
         internal Microsoft.Office.Tools.Ribbon.RibbonLabel labelUserName;
         internal Microsoft.Office.Tools.Ribbon.RibbonLabel labelUser;
-        internal Microsoft.Office.Tools.Ribbon.RibbonBox box1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup groupUserInfo;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonOrderImport;
     }
 
     partial class ThisRibbonCollection

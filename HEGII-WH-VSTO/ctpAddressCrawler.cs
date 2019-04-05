@@ -74,9 +74,8 @@ namespace HEGII_WH_VSTO
                     return ("error");
                 }
             }
-            catch (System.Exception ex)         //没有取到网页则报错
+            catch         //没有取到网页则报错
             {
-                //MessageBox.Show(ex.Message);
                 return ("error");
             }
         }

@@ -178,6 +178,18 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="ctpOrderArrange.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctpOrderArrange.Designer.cs">
+      <DependentUpon>ctpOrderArrange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctpOrderImport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctpOrderImport.Designer.cs">
+      <DependentUpon>ctpOrderImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctpUserLogin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -193,6 +205,12 @@
     <Compile Include="ctpAddressCrawler.Designer.cs">
       <DependentUpon>ctpAddressCrawler.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ctpOrderArrange.resx">
+      <DependentUpon>ctpOrderArrange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctpOrderImport.resx">
+      <DependentUpon>ctpOrderImport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctpUserLogin.resx">
       <DependentUpon>ctpUserLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +231,7 @@
       <DependentUpon>ctpAddressCrawler.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="HEGII-WH-VSTO_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -248,6 +267,9 @@
   <ItemGroup>
     <None Include="Resources\login.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-plus.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -256,8 +278,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>HEGII-WH-VSTO_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>37780865D590E8B6200B753F8EF0D017926931EC</ManifestCertificateThumbprint>

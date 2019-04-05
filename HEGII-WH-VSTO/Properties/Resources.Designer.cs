@@ -63,6 +63,16 @@ namespace HEGII_WH_VSTO.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap database_plus {
+            get {
+                object obj = ResourceManager.GetObject("database-plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap login {
             get {
                 object obj = ResourceManager.GetObject("login", resourceCulture);
@@ -73,9 +83,9 @@ namespace HEGII_WH_VSTO.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap map_marker_multiple {
+        internal static System.Drawing.Bitmap MapMarker {
             get {
-                object obj = ResourceManager.GetObject("map-marker-multiple", resourceCulture);
+                object obj = ResourceManager.GetObject("MapMarker", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,36 +96,6 @@ namespace HEGII_WH_VSTO.Properties {
         internal static System.Drawing.Bitmap sort {
             get {
                 object obj = ResourceManager.GetObject("sort", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap 整理 {
-            get {
-                object obj = ResourceManager.GetObject("整理", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap 爬虫 {
-            get {
-                object obj = ResourceManager.GetObject("爬虫", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap 登录 {
-            get {
-                object obj = ResourceManager.GetObject("登录", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
